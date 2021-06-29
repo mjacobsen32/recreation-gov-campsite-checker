@@ -3,15 +3,6 @@ from telegram.ext import *
 from helpers import *
 from constants import API_KEY, parks_file
 
-json_output = False
-
-def make_parks_list(parks_file):
-    l = []
-    with open(parks_file, 'r') as P:
-        for line in P:
-           l.append(line.rstrip())
-    return(l) 
-
 def response(req):
     return(req)
 
@@ -19,7 +10,7 @@ def start_command(update: Update,context):
     update.message.reply_text("Type a command to begin")
 
 def show_available(update: Update,context):
-    cmd = "python camping.py --start-date 2021-08-20 --end-date 2021-09-15 --stdin < parks.txt"
+    cmd = "python ../camping.py --start-date 2021-08-20 --end-date 2021-09-15 --stdin < parks.txt"
     update.message.reply_text(str(get_available(cmd))) 
 
 def show_sites(update: Update,context):
@@ -31,7 +22,7 @@ def handle_message(update: Update,context):
 
 def check_new(context: CallbackContext):
     job = context.job
-    cmd = "python camping.py --start-date 2021-08-20 --end-date 2021-09-15 --stdin < parks.txt"
+    cmd = "python ../camping.py --start-date 2021-08-20 --end-date 2021-09-15 --stdin < parks.txt"
     available = get_available(cmd)
     none = "There are no campsites available :("
     if none not in available:

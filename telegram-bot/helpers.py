@@ -1,4 +1,3 @@
-from camping import main
 from subprocess import PIPE, Popen
 
 def get_available(cmd):
